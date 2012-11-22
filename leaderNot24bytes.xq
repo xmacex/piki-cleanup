@@ -5,7 +5,7 @@ declare namespace marc="http://www.loc.gov/MARC21/slim";
 
 <recordsWithInvalidLeaderLength>{
 for $record in /records/record/srw:recordData/marc:record
-  where not(string-length($record/marc:leader) = 23)
+  where not(string-length($record/marc:leader) = 24)
   return <evilLeader
       id="{$record/marc:controlfield[@tag='001']}"
       length="{string-length($record/marc:leader)}">
