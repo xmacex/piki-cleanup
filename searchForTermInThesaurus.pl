@@ -17,7 +17,11 @@
 # end of the topic -fields. Thus, f.ex. 'topic:"kahlaajalinnut ysa"' will
 # find the terms which claim to come from the YSA thesaurus. A separate
 # field per thesaurus would be nicer perhaps, instead of concatenating
-# strings. Anyways...
+# strings.
+#
+# Also, one word: facets.
+#
+# Anyways...
 
 use WebService::Solr;
 
