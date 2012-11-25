@@ -1,9 +1,10 @@
 #!/usr/bin/perl
-# Takes three arguments: an URL to a Solr, a subject heading, and a thesaurus. Returns stuff.
+# Takes three arguments: an URL to a Solr, a subject heading, and a
+# thesaurus. Returns stuff.
 #
-# This is a little convenience script, since i have reason to believe that this will
-# be faster more agile than an XQuery with thousands of subject headings in it's
-# 'where' clause, like so:
+# This is a little convenience script, since i have reason to believe that
+# this will be faster more agile than an XQuery with thousands of subject
+# headings in it's 'where' clause, like so:
 # 
 #	for $subjectheading in /blahblahblah/datafield[@tag='650']
 #	where $subjectheading/subfield[[@code='2' = 'ysa'] and [@code='a' = *thousands of illegal terms here*]]
@@ -12,10 +13,11 @@
 # bad XQuery but you get the idea.
 #
 # Relies on SolrMarc MARC schema that comes with VuFind. That schema doesn't
-# differentiate the different thesauri, but adds their identifier to the end of the
-# topic -fields. Thus, f.ex. 'topic:"kahlaajalinnut ysa"' will find the terms which claim to
-# come from the YSA thesaurus. A separate field per thesaurus would be nicer perhaps,
-# instead of concatenating strings. Anyways...
+# differentiate the different thesauri, but adds their identifier to the
+# end of the topic -fields. Thus, f.ex. 'topic:"kahlaajalinnut ysa"' will
+# find the terms which claim to come from the YSA thesaurus. A separate
+# field per thesaurus would be nicer perhaps, instead of concatenating
+# strings. Anyways...
 
 use WebService::Solr;
 
