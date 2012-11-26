@@ -1,4 +1,6 @@
 (: rips the MARC21 language codes from this page http://www.kansalliskirjasto.fi/extra/marc21/kielet_koodit.htm of MARC21 language codes, maintained by the National Library of Finland :)
+(: needs to clean up the legend in the top, and the sublegend for special codes down near the bottom :)
+(: Also, cleaning of empty notes would be nice :)
 
 declare namespace xhtml="http://www.w3.org/1999/xhtml";
 
