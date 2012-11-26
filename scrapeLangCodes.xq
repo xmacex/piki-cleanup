@@ -3,7 +3,8 @@
 declare namespace xhtml="http://www.w3.org/1999/xhtml";
 
 <marc21LangCodes>{
-for $l in /xhtml:html/xhtml:body/xhtml:table/xhtml:tr
+let $webpage := fn:doc('http://www.kansalliskirjasto.fi/extra/marc21/kielet_koodit.htm')
+for $l in $webpage/xhtml:html/xhtml:body/xhtml:table/xhtml:tr
 order by $l/xhtml/td[1]
 return
   <lang>
