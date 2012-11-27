@@ -5,8 +5,6 @@ declare namespace marc="http://www.loc.gov/MARC21/slim";
 
 <languageCodes008>{
 for $field in /records/record/srw:recordData/marc:record/marc:controlfield[@tag="008"]
-  let $lang := substring($field, 1 + 35, 3)
-  order by $lang
 return
-	<lang>{$lang}</lang>
+	<lang>{substring($field, 1 + 35, 3)}</lang>
 }</languageCodes008>
