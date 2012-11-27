@@ -3,6 +3,7 @@
 
 declare namespace xhtml="http://www.w3.org/1999/xhtml";
 
+<hankalatMusiikkinimet>{
 for $term in //xhtml:td
 where $term/xhtml:div/xhtml:span[matches(@id, "labelFalseTerms")]
 order by $term/xhtml:span[1]/data()
@@ -14,3 +15,4 @@ return
       {$term/xhtml:span[1]/data()}
     </correctterm>
   </termmapping>
+}</hankalatMusiikkinimet>
