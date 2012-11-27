@@ -1,4 +1,6 @@
-(: Find author data in records, and report if it has been marked in the Hankalat musiikkinimet -database. It countains a few thousand "replaces" -and "replaced by" -relations, which i've screenscraped and prepared with hankalat-musiikkinimet-disassemble.xq. This will take a a long time to check, since the database contains a few thousand names both ways. Be prepared. :)
+(: Find author data in records, and report if it has been marked in the Hankalat musiikkinimet -database. It countains a few thousand "replaces" -and "replaced by" -relations, which i've screenscraped and prepared with hankalat-musiikkinimet-disassemble.xq. :)
+
+(: This will take a a long time to run, since the Hankalat musiikkinimet database contains a few thousand names both ways. With minimal string-fiddling, my netbook checks 100 000 records in about 181095.82ms. You have been warned :)
 
 declare namespace srw="http://www.loc.gov/zing/srw/";
 declare namespace marc="http://www.loc.gov/MARC21/slim";
@@ -11,12 +13,12 @@ let $records := /records/record/srw:recordData/marc:record
 for $author in $records/marc:datafield[@tag="100"]/marc:subfield[@code="a"]
 let $normalizedAuthor := replace($author, '[,\.]$', '')
 return
-	<authorName
-    isReplaced="{if ($normalizedAuthor = $badAuthors)
-      then "true"
+	<hankalaMusiikkinimi 
+    authorized="{if ($normalizedAuthor = $badAuthors)
+      then "replaced-by-smth"
       else if ($normalizedAuthor = $goodAuthors)
-        then "false"
-      else ""
+        then "replaces-smth"
+      else ()
       }">
     {$normalizedAuthor}
-  </authorName>
+  </hankalaMusiikkinimi>
