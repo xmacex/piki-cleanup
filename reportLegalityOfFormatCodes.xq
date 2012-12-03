@@ -7,9 +7,10 @@ declare variable $leaderDefinition := fn:doc('marc21-xml/000.xml');
 declare variable $okFormatCodes := $leaderDefinition/fields/leader-directory/leader/positions/position[@pos = "06"]/values/value/@code/data();
 declare variable $resources := collection();
 
+<formatCodes>{
 for $res in $resources
   return
-  <formatCodes resource="{fn:document-uri($res)}">{
+  <formatCodesPerResource resource="{fn:document-uri($res)}">{
   for $record in $res/records/record/srw:recordData/mx:record
     let $id := $record/mx:controlfield[@tag='001']
     let $leader := $record/mx:leader
@@ -21,4 +22,5 @@ for $res in $resources
           then "true"
           else "false"
     }">{$formatCode}</formatCode>
-  }</formatCodes>
+  }</formatCodesPerResource>
+}</formatCodes>
