@@ -8,14 +8,14 @@ declare variable $okFormatCodes := $leaderDefinition/fields/leader-directory/lea
 declare variable $resources := collection();
 
 for $res in $resources
-return
-<formatCodes resource="{fn:document-uri($res)}">{
-for $leader in $res/records/record/srw:recordData/mx:record/mx:leader
-  let $formatCode := substring($leader, 1+6, 1)
-  return <formatCode
-    isLegal="{
-      if ($formatCode = $okFormatCodes)
-        then "true"
-        else "false"
-  }">{$formatCode}</formatCode>
-}</formatCodes>
+  return
+  <formatCodes resource="{fn:document-uri($res)}">{
+  for $leader in $res/records/record/srw:recordData/mx:record/mx:leader
+    let $formatCode := substring($leader, 1+6, 1)
+    return <formatCode
+      isLegal="{
+        if ($formatCode = $okFormatCodes)
+          then "true"
+          else "false"
+    }">{$formatCode}</formatCode>
+  }</formatCodes>
