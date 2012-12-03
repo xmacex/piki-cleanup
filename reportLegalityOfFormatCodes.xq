@@ -10,9 +10,12 @@ declare variable $resources := collection();
 for $res in $resources
   return
   <formatCodes resource="{fn:document-uri($res)}">{
-  for $leader in $res/records/record/srw:recordData/mx:record/mx:leader
+  for $record in $res/records/record/srw:recordData/mx:record
+    let $id := $record/mx:controlfield[@tag='001']
+    let $leader := $record/mx:leader
     let $formatCode := substring($leader, 1+6, 1)
     return <formatCode
+      id = "{$id}"
       isLegal="{
         if ($formatCode = $okFormatCodes)
           then "true"
