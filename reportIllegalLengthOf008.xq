@@ -9,7 +9,7 @@ declare variable $resources := collection();
       for $field in $res/records/record/srw:recordData/mx:record/mx:controlfield[@tag="008"]
         where (not(string-length($field/data()) eq 40))
         return <wrongLength008
-          id="{$field/../mx:controlfield[@tag="001"]}"
+          id="{$field/../mx:controlfield[@tag="001"][1]}"
           length="{string-length($field)}">
           {$field/data()}
         </wrongLength008>
