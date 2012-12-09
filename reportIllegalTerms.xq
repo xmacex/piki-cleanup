@@ -14,10 +14,12 @@ declare variable $pikiSanastot := db:open('piki-sanastot');
 <stinkyTerms>{
   for $res in $resources
     return
-	    for $termField in $res/records/record/srw:recordData/mx:record[mx:controlfield[@tag="001"] = "Ppro837_808042_0119"]/mx:datafield[@tag="650"]
-	      let $thesaurus := $termField/mx:subfield[@code="2"]
-	      let $term := $termField/mx:subfield[@code="a"]
-        let $recordId := $termField/../mx:controlfield[@tag="001"]
+	    for $term in $res/records/record/srw:recordData/mx:record/mx:datafield[@tag="650"]/mx:subfield[@code="a" or @code = "b" or @code = "c" or @code = "d" or @code = "e" or @code = "v" or @code="x" or @code = "y" or @code = "z"]
+(:	      let $thesaurus := $termField/mx:subfield[@code="2"]:)
+        let $thesaurus := $term/../mx:subfield[@code="2"]
+(:	      let $term := $termField/mx:subfield[@code="a"]:)
+(:        let $recordId := $termField/../mx:controlfield[@tag="001"]:)
+        let $recordId := $term/../../mx:controlfield[@tag="001"]
 	      where (not($term = $pikiSanastot/rdf:RDF/rdf:Description/skos:prefLabel[@xml:lang="fi"]))
 	    	return <stinkyTermOccurrence
           id = "{$recordId}"
