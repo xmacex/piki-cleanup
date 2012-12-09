@@ -8,7 +8,7 @@ declare variable $resources := collection();
 
 <badCountsOf008>{
   for $res in $resources
-    return
+    return <wrongCount008PerResource id="{document-uri($res)}">{
       for $r in $res/records/record/srw:recordData/mx:record
         where (not(count($r/mx:controlfield[@tag="008"]) eq 1))
         return <badCountOf008
@@ -16,4 +16,5 @@ declare variable $resources := collection();
           count="{count($r/mx:controlfield[@tag="008"])}">
             {$r/mx:controlfield[@tag="008"]/data()}
         </badCountOf008>
+    }</wrongCount008PerResource>
 }</badCountsOf008>
