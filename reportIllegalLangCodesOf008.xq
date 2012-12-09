@@ -1,6 +1,11 @@
-(: An implementation of language code checking with XQuery. Iterates through records, and reports on all records whose 008 language code is not in the list screenscraped from National Library Of Finland's website, using scrapeLangCodes.xq :)
+(: An implementation of language code checking with XQuery. Iterates
+through records, and reports on all records whose 008 language
+code is not in the list screenscraped from National Library Of
+Finland's website, using scrapeLangCodes.xq :)
 
-(: argh where are all these namespaces coming from? Must... not... fight... them... with... *: -assignments... . Problems of screenscraping. :)
+(: argh where are all these namespaces coming from? Must...
+not... fight... them... with... *: -assignments... . Problems of
+screenscraping. :)
 
 declare namespace srw="http://www.loc.gov/zing/srw/";
 declare namespace mx="http://www.loc.gov/MARC21/slim";
@@ -15,7 +20,7 @@ for $res in $resources
     <langCodesPerResource resource="{fn:document-uri($res)}">{
       for $record in $res/records/record/srw:recordData/mx:record
         let $id := $record/mx:controlfield[@tag='001']
-        let $field008 := $record/mx:controlfield[@tag="008"]
+        let $field008 := $record/mx:controlfield[@tag="008"][1] (: evil, check only the first occurrence of 008 :)
         let $langCode := substring($field008, 1+35, 3)
           (: /*:languageCodes008/*:lang :)
         return
