@@ -5,6 +5,7 @@ with my browser. :)
 
 declare namespace xhtml = "http://www.w3.org/1999/xhtml";
 
+<ykl>{
   for $class in //xhtml:table[@class="classList tableEvents"]/xhtml:tr[not(@class="Normal-Header-0")]/xhtml:td[@class="number"]
     let $name := $class/../xhtml:td[@class="name"]/xhtml:a/data()
     let $no := $class/../xhtml:td[@class="number"]/xhtml:a/data()
@@ -13,3 +14,4 @@ declare namespace xhtml = "http://www.w3.org/1999/xhtml";
       no="{$no}">
         {$name}
       </class>
+}</ykl>
