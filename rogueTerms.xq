@@ -7,7 +7,7 @@
 declare namespace srw="http://www.loc.gov/zing/srw/";
 declare namespace mx="http://www.loc.gov/MARC21/slim";
 
-let $thesauri := ('allars', 'kaunokki', 'musa', 'ysa')
+let $thesauri := ('kaunokki', 'musa', 'ysa')
 
 for $rogueterm in (/records/record/srw:recordData/mx:record/mx:datafield[@tag="650"][not(. /mx:subfield[@code="2"] = $thesauri)])
 return $rogueterm
