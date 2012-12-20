@@ -15,17 +15,22 @@ declare variable $resources := collection();
 declare variable $testTerms := ("kissa", "koirat", "jänikset", "jänikset", "suihkulähteet");
 declare variable $pikiSanastot := db:open('piki-sanastot');
 declare variable $allowedTerms := $pikiSanastot/rdf:RDF/rdf:Description/skos:prefLabel[@xml:lang="fi"]/data();
+declare variable $subfields := ('a', 'b', 'c', 'd', 'e', 'v', 'x', 'y', 'z');
 
 <termsInThesauri>{
-	for $term in /records/record/srw:recordData/mx:record/mx:datafield[@tag="650"]/mx:subfield[@code="a" or @code = "b" or @code = "c" or @code = "d" or @code = "e" or @code = "v" or @code="x" or @code = "y" or @code = "z"]
-	  let $c := count($term)
-	  group by $term
-	  order by count($c) descending
-	  return <term
-	    count="{count($c)}"
-	    allowed="{if ($term = $allowedTerms)
-	      then 'true'
-	      else 'false'}">{
-	        $term
-        }</term>
+  for $subfield in $subfields
+    return <subfield
+      code="{$subfield}">{
+  	for $term in /records/record/srw:recordData/mx:record/mx:datafield[@tag="650"]/mx:subfield[@code = $subfield]
+  	  let $c := count($term)
+  	  group by $term
+  	  order by count($c) descending
+  	  return <term
+  	    count="{count($c)}"
+  	    allowed="{if ($term = $allowedTerms)
+		      then 'true'
+		      else 'false'}">{
+		        $term
+	        }</term>
+	  }</subfield>
 }</termsInThesauri>
