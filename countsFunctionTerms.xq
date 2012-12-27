@@ -21,7 +21,7 @@ declare variable $allowedFunctionTerms := ($functionTerms, $musicalInstrumentTer
     order by count($c) descending
     return <functionTerm
       count="{count($c)}"
-      allowed="{if ($functionTerm = $allowedFunctionTerms)
+      allowed="{if (($functionTerm = $functionTerms) or (fn:replace($functionTerm, '\.$', '') = $musicalInstrumentTerms))
         then 'true'
         else 'false'}">{
           $functionTerm
