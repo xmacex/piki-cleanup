@@ -3,3 +3,5 @@ A little project i'm working on during November-December 2012 to evaluate and he
 This toolkit (lol) is not meant to be sustainable or even maintainable, to be honest, let's see... Project management lives elsewhere, at http://projektit.kirjastot.fi/projects/pikisiivous/
 
 Comments welcome of course.
+
+All code here by Mace Ojala <mace@kirjakaapeli.lib.hel.fi>, made in 2012. The code and it's users are protected by the GNU General Public License (GNU GPL). See http://www.gnu.org/licenses/gpl.html or the file LICENSE for more information.
